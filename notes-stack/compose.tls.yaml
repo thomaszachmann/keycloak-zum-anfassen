@@ -1,0 +1,18 @@
+# notes-stack/compose.tls.yaml – ab Tag 12 als compose.override.yaml:
+# notes-api und oauth2-proxy vertrauen der Lab-CA (Keycloak hinter TLS)
+services:
+  migrate:
+    environment:
+      SSL_CERT_FILE: /etc/lab-ca.pem
+    volumes:
+      - ../tls/ca.pem:/etc/lab-ca.pem:ro
+  notes-api:
+    environment:
+      SSL_CERT_FILE: /etc/lab-ca.pem
+    volumes:
+      - ../tls/ca.pem:/etc/lab-ca.pem:ro
+  oauth2-proxy:
+    environment:
+      SSL_CERT_FILE: /etc/lab-ca.pem
+    volumes:
+      - ../tls/ca.pem:/etc/lab-ca.pem:ro

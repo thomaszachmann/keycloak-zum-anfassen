@@ -1,0 +1,31 @@
+# k8s/keycloak.yaml – Keycloak über den Operator: zwei Instanzen hinter Traefik (Tag 14)
+# K3S_IP ersetzt sed beim Anwenden durch die IP der VM
+apiVersion: k8s.keycloak.org/v2beta1
+kind: Keycloak
+metadata:
+  name: kc
+  namespace: keycloak
+spec:
+  instances: 2
+  image: quay.io/keycloak/keycloak:26.8.0
+  startOptimized: false                 # Standard-Image, kein eigener Build
+  db:
+    vendor: postgres
+    host: postgres
+    database: keycloak
+    usernameSecret: {name: keycloak-db, key: username}
+    passwordSecret: {name: keycloak-db, key: password}
+  http:
+    httpEnabled: true                   # Labor: TLS endet nicht hier
+  hostname:
+    hostname: http://kc.K3S_IP.sslip.io
+  proxy:
+    headers: xforwarded
+  ingress:
+    enabled: true
+    className: traefik
+  resources:
+    requests: {cpu: 200m, memory: 600Mi}
+    limits: {memory: 1Gi}
+  update:
+    strategy: Auto                      # Operator prüft: rolling oder recreate

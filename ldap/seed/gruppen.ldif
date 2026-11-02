@@ -1,0 +1,11 @@
+# gruppen.ldif – zwei Gruppen mit Mitgliedern (Tag 6)
+dn: cn=notes-schreiber,ou=groups,dc=notes,dc=lab
+objectClass: groupOfNames
+cn: notes-schreiber
+member: uid=carla,ou=people,dc=notes,dc=lab
+
+dn: cn=notes-leser,ou=groups,dc=notes,dc=lab
+objectClass: groupOfNames
+cn: notes-leser
+member: uid=dirk,ou=people,dc=notes,dc=lab
+member: uid=emil,ou=people,dc=notes,dc=lab

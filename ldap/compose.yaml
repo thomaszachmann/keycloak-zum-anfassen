@@ -1,0 +1,25 @@
+# ldap/compose.yaml – OpenLDAP für das Labor (Tag 6)
+name: ldap
+
+services:
+  ldap:
+    build: .
+    image: lab/openldap:2.6.10
+    environment:
+      LDAP_SUFFIX: dc=notes,dc=lab
+      LDAP_ADMIN_PASSWORD: lab-ldap-pw-123
+      LDAP_BIND_PASSWORD: lab-bind-pw-123
+    volumes:
+      - ldap-config:/etc/ldap/slapd.d
+      - ldap-data:/var/lib/ldap
+    ports:
+      - "127.0.0.1:389:389"
+
+volumes:
+  ldap-config:
+  ldap-data:
+
+networks:
+  default:
+    name: lab
+    external: true

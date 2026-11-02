@@ -1,0 +1,25 @@
+# base.ldif.tmpl – Grundgerüst des Verzeichnisses; @SUFFIX@ und @BIND_HASH@ setzt entrypoint.sh
+dn: @SUFFIX@
+objectClass: dcObject
+objectClass: organization
+dc: notes
+o: notes Labor
+
+dn: ou=people,@SUFFIX@
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,@SUFFIX@
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=system,@SUFFIX@
+objectClass: organizationalUnit
+ou: system
+
+dn: cn=keycloak,ou=system,@SUFFIX@
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+cn: keycloak
+description: Bind-Benutzer für Keycloak
+userPassword: @BIND_HASH@

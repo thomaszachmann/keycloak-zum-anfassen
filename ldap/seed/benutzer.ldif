@@ -1,0 +1,27 @@
+# benutzer.ldif – drei Benutzer im Verzeichnis (Tag 6); Passwörter setzt ldappasswd
+dn: uid=carla,ou=people,dc=notes,dc=lab
+objectClass: inetOrgPerson
+uid: carla
+cn: Carla Verzeichnis
+givenName: Carla
+sn: Verzeichnis
+mail: carla@notes.lab
+departmentNumber: Vertrieb
+
+dn: uid=dirk,ou=people,dc=notes,dc=lab
+objectClass: inetOrgPerson
+uid: dirk
+cn: Dirk Verzeichnis
+givenName: Dirk
+sn: Verzeichnis
+mail: dirk@notes.lab
+departmentNumber: Support
+
+dn: uid=emil,ou=people,dc=notes,dc=lab
+objectClass: inetOrgPerson
+uid: emil
+cn: Emil Verzeichnis
+givenName: Emil
+sn: Verzeichnis
+mail: emil@notes.lab
+departmentNumber: Support

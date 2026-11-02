@@ -1,0 +1,31 @@
+# k8s/realm-k8s.yaml – ein kleiner Realm per KeycloakRealmImport (Tag 14)
+apiVersion: k8s.keycloak.org/v2beta1
+kind: KeycloakRealmImport
+metadata:
+  name: realm-k8s
+  namespace: keycloak
+spec:
+  keycloakCRName: kc
+  realm:
+    realm: k8s
+    enabled: true
+    displayName: notes auf Kubernetes
+    roles:
+      realm:
+        - name: notes-lesen
+    clients:
+      - clientId: notes-cli
+        secret: lab-client-secret-123
+        directAccessGrantsEnabled: true
+        standardFlowEnabled: false
+    users:
+      - username: kira
+        enabled: true
+        email: kira@notes.lab
+        emailVerified: true
+        firstName: Kira
+        lastName: Cluster
+        realmRoles: [notes-lesen]
+        credentials:
+          - type: password
+            value: lab-user-pw-kira
