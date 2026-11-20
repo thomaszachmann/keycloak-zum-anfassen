@@ -1,32 +1,32 @@
-# Keycloak zum Anfassen – Begleitcode
+# Keycloak hands-on – Companion Code
 
-Begleitcode zum Buch **Keycloak zum Anfassen** – Identität und Login vom ersten Realm bis LDAP. Teil der Reihe IT-Trainingslager von Thomas Zachmann.
+Companion code for the book **Keycloak hands-on** (German edition: *Keycloak zum Anfassen*) – identity and login from your first realm to LDAP. Part of Thomas Zachmann's IT Drills series.
 
-Buchseite: https://it-trainingslager.de/buecher/keycloak
+Book page: https://itdrills.com/books/keycloak · German edition: https://it-trainingslager.de/buecher/keycloak
 
-Der Code begleitet das Buch; Erklärungen und Übungen stehen im Buch. Alle Passwörter und Secrets sind Laborwerte – nie in Produktion verwenden.
+The code accompanies the book; explanations and exercises are in the book. All passwords and secrets are lab values – never use them in production.
 
-## Inhalt
+## Contents
 
-- `setup/` – `env.sh` mit `kcadm`, `kclogin`, `token` und `jwt` für jeden Trainingstag
-- `keycloak/` – Keycloak 26.8 mit Postgres (Tag 1), Ordner für Truststores (Tag 9) und Themes (Tag 11)
-- `notes/` – Quellcode von notes-api (prüft Tokens per JWKS) und notes-web
-- `notes-stack/` – notes mit oauth2-proxy (Tag 4), Override für TLS (Tag 12)
-- `ldap/` – eigenes OpenLDAP-Image aus Debian 13 mit Beispieldaten (Tag 6)
-- `samba/` – Active Directory mit Samba (Tag 9)
-- `keycloak-ha/` – zwei Instanzen hinter Caddy mit TLS (Tag 12)
-- `kc-probe/` – Probe-Instanz für Upgrade-Tests (Tag 12)
-- `terraform/` – Rollen, Gruppen, Clients und Benutzer als Code (Tag 13)
-- `k8s/` – Postgres, Keycloak und Realm-Import für den Operator auf k3s (Tag 14)
+- `setup/` – `env.sh` with `kcadm`, `kclogin`, `token` and `jwt` for every training day
+- `keycloak/` – Keycloak 26.8 with Postgres (Day 1), folders for truststores (Day 9) and themes (Day 11)
+- `notes/` – source code of notes-api (validates tokens via JWKS) and notes-web
+- `notes-stack/` – notes with oauth2-proxy (Day 4), override for TLS (Day 12)
+- `ldap/` – custom OpenLDAP image based on Debian 13 with sample data (Day 6)
+- `samba/` – Active Directory with Samba (Day 9)
+- `keycloak-ha/` – two instances behind Caddy with TLS (Day 12)
+- `kc-probe/` – test instance for upgrade tests (Day 12)
+- `terraform/` – roles, groups, clients and users as code (Day 13)
+- `k8s/` – Postgres, Keycloak and realm import for the operator on k3s (Day 14)
 
-## Schnellstart
+## Quick start
 
 ```bash
 git clone https://github.com/thomaszachmann/keycloak-zum-anfassen.git ~/kc-lab/code
 ```
 
-Details stehen im Kapitel „Tag 0“ des Buchs.
+Details are in the book's "Day 0" chapter.
 
-## Lizenz
+## License
 
-Code: MIT (siehe LICENSE). Buchtexte, Abbildungen und Cover sind nicht Teil dieses Repos und nicht lizenziert.
+Code: MIT (see LICENSE). Book text, figures and cover are not part of this repo and are not licensed.

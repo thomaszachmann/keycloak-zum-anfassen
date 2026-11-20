@@ -1,24 +1,24 @@
-# notes – Demo-Anwendung für „Docker Compose zum Anfassen"
+# notes – demo application for *Docker Compose hands-on* (German: *Docker Compose zum Anfassen*)
 
-| Dienst | Sprache | Port | Zweck |
+| Service | Language | Port | Purpose |
 |---|---|---|---|
-| notes-api | Go 1.27 | 8080 | Notizen speichern (Speicher oder Postgres); POST verlangt `X-API-Key` |
-| notes-worker | Python 3.15 + uv | – | fasst die Notizen periodisch zusammen |
-| notes-web | Node 26 | 3000 | Oberfläche plus Proxy auf notes-api |
-| db (ab Tag 3) | Postgres 18 | 5432 | Image `postgres:18.6-alpine`, kein eigenes Dockerfile |
+| notes-api | Go 1.27 | 8080 | stores notes (in memory or Postgres); POST requires `X-API-Key` |
+| notes-worker | Python 3.15 + uv | – | periodically summarizes the notes |
+| notes-web | Node 26 | 3000 | web UI plus proxy to notes-api |
+| db (from Day 3) | Postgres 18 | 5432 | image `postgres:18.6-alpine`, no Dockerfile of its own |
 
-Die Dockerfiles sind der Endstand aus „Dockerfiles zum Anfassen" (Multi-Stage,
-non-root, Healthcheck in notes-api). Eine `compose.yaml` gibt es noch nicht – sie
-entsteht an Tag 1.
+The Dockerfiles are the final state from *Dockerfiles hands-on* (multi-stage,
+non-root, healthcheck in notes-api). There is no `compose.yaml` yet – it is
+created on Day 1.
 
 notes-api:
 
-- API-Key aus `NOTES_API_KEY_FILE` (bevorzugt) oder `NOTES_API_KEY`.
-- Datenbank-URL aus `NOTES_DB_URL_FILE` (bevorzugt) oder `NOTES_DB_URL`, z. B.
-  `postgres://notes:lab-db-pw-123@db:5432/notes`. Ohne URL: Speicherbetrieb.
-- `notes-api migrate` legt die Tabelle `notes` an (idempotent) und endet mit 0.
-- `notes-api healthcheck` prüft `/healthz`; mit Datenbank antwortet `/healthz` nur
-  dann mit 200, wenn die Datenbank erreichbar ist.
-- `GET /metrics` liefert Kennzahlen im Prometheus-Textformat.
+- API key from `NOTES_API_KEY_FILE` (preferred) or `NOTES_API_KEY`.
+- Database URL from `NOTES_DB_URL_FILE` (preferred) or `NOTES_DB_URL`, e.g.
+  `postgres://notes:lab-db-pw-123@db:5432/notes`. Without a URL: in-memory mode.
+- `notes-api migrate` creates the `notes` table (idempotent) and exits with 0.
+- `notes-api healthcheck` checks `/healthz`; with a database, `/healthz` only returns
+  200 when the database is reachable.
+- `GET /metrics` returns metrics in the Prometheus text format.
 
-`.env` enthält nur Lab-Werte (`lab-…`), `.env.example` die Vorlage ohne Werte.
+`.env` contains only lab values (`lab-…`), `.env.example` the template without values.
